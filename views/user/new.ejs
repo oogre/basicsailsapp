@@ -1,0 +1,26 @@
+<form action="/user/create" method="POST" class="form-signin" id="signup-form">
+	<h2 class="form-signin-heading">Create an account</h2>
+
+	<% 	if(flash && flash.err) { %>
+			<ul class="alert alert-success">
+	<% 		Object.keys(flash.err).forEach(function(error){ %>
+				<li><% JSON.stringify(flash.err[error]) %></li>
+	<% 		}) %>
+			</ul>
+	<% }%>
+
+	<div class="control-group input-append">
+		<input type="email" class="form-control" placeholder="Your email" name="email" data-required data-pattern="^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$"/>
+	</div>
+	<div class="control-group input-append">
+		<input type="password" class="form-control" placeholder="Your password" name="password" id="password" minlength="6" data-required />
+	</div>
+	<div class="control-group input-append">
+		<input type="password" class="form-control" placeholder="password confirmation" name="confirmation" minlength="6" data-required data-conditional="confirmation"/>
+	</div>
+	<br/>
+	<div class="btn-group">
+		<input type="submit" class="btn btn-lg btn-primary btn-block" value="Create Account" />
+	</div>
+	<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+</form>
